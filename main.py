@@ -40,11 +40,12 @@ def error(message):
     avatar=account.get_avatar(domain)
     host = request.host
     links = db.get_users_links(domain)
+    link_count = len(links)
     if links == False:
-        links = []
-
-
-    return render_template('dash.html',domain=domain,avatar=avatar,host=host,links=links,link_count=len(links),message=message)
+        links = "<h1>No links created yet</h1>"
+    else:
+        links = render.links(links,host)
+    return render_template('dash.html',domain=domain,avatar=avatar,host=host,links=links,link_count=link_count,message=message)
 
 @app.route('/')
 def index():
