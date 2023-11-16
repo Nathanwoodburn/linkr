@@ -114,6 +114,10 @@ def add_link():
     if len(link) < 5:
         return error('Link too short')
     
+    regexmatch = re.match(r"^[a-zA-Z0-9]+$", link)
+    if not regexmatch:
+        return error('Invalid link')
+    
     # Verify link is not taken
     if db.get_link(link) != False:
         return error('Link already taken')

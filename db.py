@@ -52,6 +52,7 @@ def get_link_count():
     cursor = connection.cursor()
     cursor.execute("SELECT COUNT(*) FROM links")
     result = cursor.fetchone()
+    cursor.fetchall()
     cursor.close()
     connection.close()
 
@@ -70,6 +71,7 @@ def get_account_count():
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM links")
     result = cursor.fetchone()
+    cursor.fetchall()
     cursor.close()
     connection.close()
     last_check_account = time.time()
