@@ -7,6 +7,7 @@ import db
 import varo_auth
 import account
 import render
+import re
 
 app = Flask(__name__)
 dotenv.load_dotenv()
@@ -97,18 +98,15 @@ def add_link():
         return resp
 
     link=request.form['link']
-    url=request.form['url']
+    url=request.form['url'].lower()
 
     # Verify link is valid
     if not (url.startswith('http://') or url.startswith('https://')):
         url = 'https://' + url
 
-    try:
-        r = requests.get(url, timeout=5)
-        if r.status_code != 200:
-            return error('Invalid URL')
-    except:
-        return error('Invalid URL')
+    regexmatch = re.match(r"^^https?://([a-z0-9]+(-[a-z0-9]+)*\.)*([a-z0-9]+(-[a-z0-9]+)*)(/([a-z0-9.])+(-([a-z0-9.])+)?)*$", domain)
+    if not regexmatch:
+        return error('Invalid domain')
     
     if len(link) > 32:
         return error('Link too long')

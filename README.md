@@ -16,6 +16,8 @@ services:
       DB_USER: main
       DB_PASSWORD: your-db-password
       DB_NAME: main
+      DNS_SERVER: 10.1.1.2
+      DNS_SERVER_PORT: 5350
       WORKERS: 2 # number of workers to run (should be 2 * number of cores)
 
   db:
