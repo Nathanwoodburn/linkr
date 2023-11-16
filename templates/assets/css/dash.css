@@ -1,0 +1,67 @@
+.no_display {
+  color: inherit;
+  text-decoration: none !important;
+}
+
+.sticky-footer {
+  bottom: 0;
+  width: 100%;
+}
+
+.glitch:after {
+  content: attr(data-text);
+  position: absolute;
+  left: 2px;
+  text-shadow: -1px 0 #e74a3b;
+  top: 0;
+  color: #5a5c69;
+  background: #000000;
+  overflow: hidden;
+  clip: rect(0, 900px, 0, 0);
+  animation: noise-anim 2s infinite linear alternate-reverse;
+}
+
+.glitch:before {
+  content: attr(data-text);
+  position: absolute;
+  left: -2px;
+  text-shadow: 1px 0 #4e73df;
+  top: 0;
+  color: #5a5c69;
+  background: #000000;
+  overflow: hidden;
+  clip: rect(0, 900px, 0, 0);
+  animation: noise-anim-2 3s infinite linear alternate-reverse;
+}
+
+.glitch {
+  color: #5a5c69;
+  font-size: 7rem;
+  position: relative;
+  line-height: 1;
+  width: 12.5rem;
+}
+
+.link {
+  margin: 10px;
+  border: solid 1px #000000;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.link-delete {
+  display: inline-block;
+  margin-top: -5px;
+  position: absolute;
+  right: 40px;
+  border-radius: 10px;
+  background-color: white;
+  color: black;
+  padding: 5px;
+}
+
+.link-delete:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
+
