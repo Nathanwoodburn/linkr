@@ -129,6 +129,17 @@ def get_users_links(domain):
         return False
     return result
 
+def get_all_links():
+    connection = mysql.connector.connect(**dbargs)
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM links")
+    result = cursor.fetchall()
+    cursor.close()
+    connection.close()
+    if result == None:
+        return False
+    return result
+
 def get_link(url):
     connection = mysql.connector.connect(**dbargs)
     cursor = connection.cursor()
