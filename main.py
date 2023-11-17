@@ -113,7 +113,7 @@ def add_link():
     if not (url.startswith('http://') or url.startswith('https://')):
         url = 'https://' + url
 
-    regexmatch = re.match(r"^https?://([a-z0-9]+(-[a-z0-9]+)*\.)*([a-z0-9]+(-[a-z0-9]+)*)(/([a-z0-9.])+(-([a-z0-9.])+)?)*$", url)
+    regexmatch = re.match(r"^https?://([a-z0-9]+(-[a-z0-9]+)*\.)*([a-z0-9]+(-[a-z0-9]+)*)(/([a-z0-9.#])+(-([a-z0-9.])+)?)*$", url)
     if not regexmatch:
         return error('Invalid domain')
     
