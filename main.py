@@ -148,7 +148,7 @@ def delete(path):
     if domain.lower() != ADMIN_DOMAIN:
         db.delete_link(path,domain)
     else:
-        db.delete_link_admin(path,domain)
+        db.delete_link_admin(path)
     return redirect('/dash')
     
 
