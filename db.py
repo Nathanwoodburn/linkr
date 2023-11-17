@@ -52,7 +52,6 @@ def get_link_count():
     cursor = connection.cursor()
     cursor.execute("SELECT COUNT(*) FROM links")
     result = cursor.fetchone()
-    cursor.fetchall()
     cursor.close()
     connection.close()
 
@@ -70,14 +69,18 @@ def get_account_count():
     connection = mysql.connector.connect(**dbargs)
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM links")
-    result = cursor.fetchone()
-    cursor.fetchall()
+    result = cursor.fetchall()
     cursor.close()
     connection.close()
     last_check_account = time.time()
     if result == None:
         return 0
-    return 1
+    
+    accounts = []
+    for link in result:
+        if link[1] not in accounts:
+            accounts.append(link[1])
+    return len(accounts)
 
 def delete_token(token):
     connection = mysql.connector.connect(**dbargs)
