@@ -81,16 +81,17 @@ def edit():
         
     avatar=account.get_avatar(domain)
     host = request.host
-
+    admin=False
     if domain.lower() == ADMIN_DOMAIN:
         links = db.get_all_links()
+        admin=True
     else:
         links = db.get_users_links(domain)
     link_count = len(links)
     if links == False:
         links = "<h1>No links created yet</h1>"
     else:
-        links = render.links(links,host)
+        links = render.links(links,host,admin)
     return render_template('dash.html',domain=domain,avatar=avatar,host=host,links=links,link_count=link_count)
 
 @app.route('/dash', methods=['POST'])
