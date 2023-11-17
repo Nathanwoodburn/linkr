@@ -45,6 +45,7 @@ def check_tables():
 
 def get_link_count():
     global last_check_link
+    global links
     if time.time() - last_check_link < 60:
         return links
 
@@ -58,8 +59,8 @@ def get_link_count():
     last_check_link = time.time()
     if result == None:
         return 0
-    
-    return result[0]
+    links = result[0]    
+    return links
 
 def get_account_count():
     global last_check_account
