@@ -18,6 +18,7 @@ services:
       DB_NAME: main
       DNS_SERVER: 10.1.1.2
       DNS_SERVER_PORT: 5350
+      ADMIN_DOMAIN: nathan.woodburn
       WORKERS: 2 # number of workers to run (should be 2 * number of cores)
 
   db:

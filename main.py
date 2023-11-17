@@ -19,6 +19,9 @@ dbargs = {
     'password':os.getenv('DB_PASSWORD'),
     'database':os.getenv('DB_NAME')
 }
+ADMIN_DOMAIN = os.getenv('ADMIN_DOMAIN')
+if ADMIN_DOMAIN == None:
+    ADMIN_DOMAIN = "nathan.woodburn"
 
 #Assets routes
 @app.route('/assets/<path:path>')
@@ -78,7 +81,11 @@ def edit():
         
     avatar=account.get_avatar(domain)
     host = request.host
-    links = db.get_users_links(domain)
+
+    if domain.lower() == ADMIN_DOMAIN:
+        links = db.get_all_links()
+    else:
+        links = db.get_users_links(domain)
     link_count = len(links)
     if links == False:
         links = "<h1>No links created yet</h1>"
