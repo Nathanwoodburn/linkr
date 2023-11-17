@@ -63,6 +63,7 @@ def get_link_count():
 
 def get_account_count():
     global last_check_account
+    global accounts
     if time.time() - last_check_account < 60:
         return accounts
 
@@ -72,15 +73,16 @@ def get_account_count():
     result = cursor.fetchall()
     cursor.close()
     connection.close()
-    last_check_account = time.time()
     if result == None:
         return 0
-    
+        
     accounts = []
     for link in result:
         if link[1] not in accounts:
             accounts.append(link[1])
-    return len(accounts)
+    accounts = len(accounts)
+    last_check_account = time.time()
+    return accounts
 
 def delete_token(token):
     connection = mysql.connector.connect(**dbargs)
