@@ -169,3 +169,11 @@ def delete_link(url,domain):
     connection.commit()
     cursor.close()
     connection.close()
+
+def delete_link_admin(url):
+    connection = mysql.connector.connect(**dbargs)
+    cursor = connection.cursor()
+    cursor.execute("DELETE FROM links WHERE url=%s", (url,))
+    connection.commit()
+    cursor.close()
+    connection.close()

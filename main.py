@@ -145,8 +145,10 @@ def delete(path):
         resp = make_response(redirect('/'))
         resp.set_cookie('linkr', '', expires=0)
         return resp
-
-    db.delete_link(path,domain)
+    if domain.lower() != ADMIN_DOMAIN:
+        db.delete_link(path,domain)
+    else:
+        db.delete_link_admin(path,domain)
     return redirect('/dash')
     
 
