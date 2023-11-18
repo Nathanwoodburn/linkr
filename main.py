@@ -129,6 +129,8 @@ def add_link():
     # Verify link is not taken
     if db.get_link(link) != False:
         return error('Link already taken')
+    if link in ['dash','login','logout','404','assets']:
+        return error('Link already taken')
     
     # Add link
     db.add_link(link,url,domain)
