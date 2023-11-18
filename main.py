@@ -115,16 +115,16 @@ def add_link():
 
     regexmatch = re.match(r"^https?://([a-z0-9]+(-[a-z0-9]+)*\.)*([a-z0-9]+(-[a-z0-9]+)*)(/([a-z0-9.#])+(-([a-z0-9.])+)?)*$", url)
     if not regexmatch:
-        return error('Invalid domain')
+        return error('Invalid destination link')
     
     if len(link) > 32:
         return error('Link too long')
-    if len(link) < 5:
+    if len(link) < 5 and domain.lower() != ADMIN_DOMAIN:
         return error('Link too short')
     
     regexmatch = re.match(r"^[a-zA-Z0-9]+$", link)
     if not regexmatch:
-        return error('Invalid link')
+        return error('Invalid link name')
     
     # Verify link is not taken
     if db.get_link(link) != False:
