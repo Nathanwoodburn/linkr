@@ -129,7 +129,7 @@ def add_link():
     # Verify link is not taken
     if db.get_link(link) != False:
         return error('Link already taken')
-    if link in ['dash','login','logout','404','assets']:
+    if link in ['dash','login','logout','404','assets','admin']:
         return error('Link already taken')
     
     # Add link
