@@ -53,7 +53,7 @@ def error(message):
 @app.route('/')
 def index():
     # Check if domain is subdomain
-    if request.host.count('.') > 1:
+    if request.host.count('.') > 0:
         # See if link exists
         link = db.get_link(request.host.split('.')[0])
         if link != False:
