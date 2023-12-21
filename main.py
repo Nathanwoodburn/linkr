@@ -52,6 +52,13 @@ def error(message):
 
 @app.route('/')
 def index():
+    # Check if domain is subdomain
+    if request.host.count('.') > 1:
+        # See if link exists
+        link = db.get_link(request.host.split('.')[0])
+        if link != False:
+            return redirect(link)
+
     if 'linkr' in request.cookies:
         token = request.cookies['linkr']
         domain = account.get_user(token)
